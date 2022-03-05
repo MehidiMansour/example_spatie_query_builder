@@ -6,6 +6,7 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CompanyRequest;
+use Spatie\QueryBuilder\QueryBuilder;
 use App\Http\Resources\CompanyResource;
 
 class CompanyController extends Controller
@@ -17,7 +18,11 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return CompanyResource::collection(Company::mine()->get());
+        $companies = QueryBuilder::for(Company::class)
+        ->mine()
+        ->allowedFilters('name')
+        ->get();
+        return CompanyResource::collection($companies);
     }
 
     /**

@@ -16,7 +16,11 @@ class DummyUsersSeeder extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create();
-
+        User::create([
+            'name'     =>  $faker->name,
+            'email'    => 'test@example.com',
+            'password' => bcrypt('123456'),
+        ]);
         $data =  [];
         for ($i = 1; $i <= 10; $i++) {
             array_push($data, [

@@ -9,12 +9,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest as StoreRequest;
 use App\Http\Requests\ProjectRequest as UpdateRequest;
 use App\Http\Resources\ProjectResource;
-
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ProjectController extends Controller
 {
     public function index(Request $request)
     {
+        $projects = QueryBuilder::for(Project::class)
+        ->mine()
+        ->allowedFilters('name')
+        ->get();
         return ProjectResource::collection(Project::all());
     }
     /**

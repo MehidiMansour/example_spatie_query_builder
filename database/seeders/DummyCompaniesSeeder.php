@@ -21,7 +21,12 @@ class DummyCompaniesSeeder extends Seeder
 
 
         $data = [];
-
+        Company::create([
+            'name' => $faker->sentence(),
+            'user_id' =>  1,
+            'created_at' => $faker->dateTime(),
+            'updated_at' =>  $faker->dateTime(),
+        ]);
         $users = User::pluck('id')->toArray();
         for ($i = 1; $i <= 50; $i++) {
             array_push($data, [
