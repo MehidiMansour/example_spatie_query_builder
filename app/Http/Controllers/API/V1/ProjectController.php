@@ -16,10 +16,9 @@ class ProjectController extends Controller
     public function index(Request $request)
     {
         $projects = QueryBuilder::for(Project::class)
-        ->mine()
         ->allowedFilters('name')
         ->get();
-        return ProjectResource::collection(Project::all());
+        return ProjectResource::collection($projects);
     }
     /**
      * Store a newly created resource in storage.
