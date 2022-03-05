@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Http\Resources\Auth\LoginFailedResponse;
 use App\Http\Resources\Auth\LoginSuccessResponse;
+use App\Http\Resources\Auth\LogoutSuccessResponse;
 
 class LoginController extends Controller
 {
@@ -54,5 +55,15 @@ class LoginController extends Controller
     public function username(): string
     {
         return 'email';
+    }
+    /**
+     * Log the user out of the application.
+     */
+    public function logout(Request $request): LogoutSuccessResponse
+    {
+        // Revoke all tokens...
+        $request->user()->tokens()->where('name', 'Authentication')->delete();
+
+        return app(LogoutSuccessResponse::class);
     }
 }

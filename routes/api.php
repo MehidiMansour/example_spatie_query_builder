@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('logout', [LoginController::class, 'logout']);
     Route::apiResource('projects', ProjectController::class);
     Route::apiResource('companies', CompanyController::class);
 });

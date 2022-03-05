@@ -39,5 +39,14 @@ class UserLoginTest extends TestCase
             'password' => '123456',
         ])->assertStatus(200);
     }
-    
+    /** @test */
+    public function user_can_logout()
+    {
+        $user = $this->getLoggedUser();;
+        $this->postJson('api/logout',[],['Authorization' => 'Bearer ' . $user->access_token])
+        ->dump()
+        ->assertStatus(204);
+
+    }
+
 }
