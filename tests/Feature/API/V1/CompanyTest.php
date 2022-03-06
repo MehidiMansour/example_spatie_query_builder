@@ -16,7 +16,7 @@ class CompanyTest extends TestCase
      */
     public function unlogged_user_cannot_access_to_company()
     {
-        $this->withExceptionHandling();
+        $this->withoutExceptionHandling();
         $this->getJson('/api/companies')
             ->assertUnauthorized();
     }
@@ -25,7 +25,7 @@ class CompanyTest extends TestCase
      */
     public function logged_user_can_get_list_companies()
     {
-        $this->withExceptionHandling();
+        $this->withoutExceptionHandling();
         $user = $this->getLoggedUser();
         $company = Company::factory(['user_id' => $user->id])->create();
         $this->getJson('/api/companies')
@@ -37,7 +37,7 @@ class CompanyTest extends TestCase
      */
     public function logged_user_can_create_company()
     {
-
+        $this->withoutExceptionHandling();
         $user = $this->getLoggedUser();
         $payload = [
             'name' => $this->faker->sentence(),
@@ -63,7 +63,7 @@ class CompanyTest extends TestCase
     /** @test */
     public function logged_user_can_read_company()
     {
-        $this->withExceptionHandling();
+        $this->withoutExceptionHandling();
         $user = $this->getLoggedUser();
         $company = Company::factory(['user_id' => $user->id])->create();
         $this->getJson('/api/companies/' . $company->id)
@@ -75,6 +75,7 @@ class CompanyTest extends TestCase
     /** @test */
     public function logged_user_can_update_company()
     {
+        $this->withoutExceptionHandling();
         $user = $this->getLoggedUser();
         $company = Company::factory(['user_id' => $user->id])->create();
         $payload = ['name' => $this->faker->sentence()];
@@ -87,6 +88,7 @@ class CompanyTest extends TestCase
     /** @test */
     public function logged_user_can_remove_company()
     {
+        $this->withoutExceptionHandling();
         $user =  $this->getLoggedUser();
         $company = Company::factory(['user_id' => $user->id])->create();
         $this->deleteJson('/api/companies/' . $company->id)
@@ -97,6 +99,7 @@ class CompanyTest extends TestCase
     /** @test */
     public function user_can_manage_only_our_companies()
     {
+        $this->withoutExceptionHandling();
         $user = $this->getLoggedUser();
         $company1 = Company::factory(['user_id' => $user->id])->create();
         $company2 = Company::factory()->create();
@@ -118,6 +121,7 @@ class CompanyTest extends TestCase
     /** @test */
     public function mine_working_fine()
     {
+        $this->withoutExceptionHandling();
         $user = $this->getLoggedUser();
         $project1 = Company::factory(['user_id' => $user->id])->create();
         $project2 = Company::factory()->create();
