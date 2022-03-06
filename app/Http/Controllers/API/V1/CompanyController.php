@@ -55,11 +55,8 @@ class CompanyController extends Controller
      */
     public function show(Request $request, Company $company)
     {
-        if(!auth()->user()){
             abort_if(!$company->isMine, 403, 'Can not access to this company');
-        }else{
             return new CompanyResource($company);
-        }
 
     }
 
