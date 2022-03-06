@@ -12,7 +12,7 @@ class CompanyTest extends TestCase
     use RefreshDatabase;
     use WithFaker;
     /**
-     @test
+@test
      */
     public function unlogged_user_cannot_access_to_company()
     {
@@ -21,7 +21,7 @@ class CompanyTest extends TestCase
             ->assertUnauthorized();
     }
     /**
-     @test
+@test
      */
     public function logged_user_can_get_list_companies()
     {
@@ -33,7 +33,7 @@ class CompanyTest extends TestCase
             ->assertJsonCount(1, 'data');
     }
     /**
-     @test
+@test
      */
     public function logged_user_can_create_company()
     {
@@ -67,6 +67,7 @@ class CompanyTest extends TestCase
         $user = $this->getLoggedUser();
         $company = Company::factory(['user_id' => $user->id])->create();
         $this->getJson('/api/companies/' . $company->id)
+        ->dump()
             ->assertOk()
             ->assertJsonPath('data.name', $company->name)
             ->assertJsonPath('data.user.name', $user->name);
