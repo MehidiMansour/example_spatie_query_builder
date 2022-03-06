@@ -66,6 +66,7 @@ class CompanyTest extends TestCase
         $this->withoutExceptionHandling();
         $user = $this->getLoggedUser();
         $company = Company::factory(['user_id' => $user->id])->create();
+        dd($company);
         $this->getJson('/api/companies/' . $company->id)
         ->dump()
             ->assertOk()
