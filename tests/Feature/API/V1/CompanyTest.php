@@ -58,16 +58,16 @@ class CompanyTest extends TestCase
             ->assertStatus(422)->assertJsonValidationErrors(['name']);
     }
     /** @test */
-    public function logged_user_can_read_company()
-    {
-        // $user = $this->getLoggedUser();
-        // $company = Company::factory(['user_id' => $user->id])->create();
-        // $this->getJson('api/companies/' . $company->id)
-        //     ->dump()
-        //     ->assertStatus(200)
-        //     ->assertJsonPath('data.name', $company->name)
-        //     ->assertJsonPath('data.user.name', $user->name);
-    }
+    // public function logged_user_can_read_company()
+    // {
+    //     // $user = $this->getLoggedUser();
+    //     // $company = Company::factory(['user_id' => $user->id])->create();
+    //     // $this->getJson('api/companies/' . $company->id)
+    //     //     ->dump()
+    //     //     ->assertStatus(200)
+    //     //     ->assertJsonPath('data.name', $company->name)
+    //     //     ->assertJsonPath('data.user.name', $user->name);
+    // }
     /** @test */
     public function logged_user_can_update_company()
     {
