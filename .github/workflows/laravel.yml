@@ -15,11 +15,10 @@ jobs:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
         php-version: '8.0'
-    - uses: actions/checkout@v2
-    with:
+    - uses: actions/checkout@v3
+      with:
         repository: dzfreelancedevelopper/database
         token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
-
     - name: Pull & update submodules recursively
       run: |
         git submodule update --init --recursive
