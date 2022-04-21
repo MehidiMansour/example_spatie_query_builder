@@ -62,7 +62,7 @@ class CompanyTest extends TestCase
     {
         $user = $this->getLoggedUser();
         $company = Company::factory(['user_id' => $user->id])->create();
-        $this->getJson('/api/companies/' . $company->id)
+        $this->getJson('api/companies/' . $company->id)
             ->assertStatus(200)
             ->assertJsonPath('data.name', $company->name)
             ->assertJsonPath('data.user.name', $user->name);
