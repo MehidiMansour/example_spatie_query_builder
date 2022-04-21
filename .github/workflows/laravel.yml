@@ -30,6 +30,11 @@ jobs:
         git add --all
         git commit -m "Update submodules" || echo "No changes to commit"
         git push
+    - name: Cache Dependencies
+      uses: actions/cache@v2
+      with:
+          path: ~/.composer/cache/files
+          key: composer-dependencies-${{ hashFiles('composer.json') }}
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
