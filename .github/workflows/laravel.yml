@@ -17,7 +17,7 @@ jobs:
         php-version: '8.0'
     - uses: actions/checkout@v2
       with:
-        repository: example_spatie_query_builder
+        repository: database
         token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
     - name: Pull & update submodules recursively
       run: |
