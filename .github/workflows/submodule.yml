@@ -17,7 +17,7 @@ jobs:
         php-version: '8.0'
     - uses: actions/checkout@v3
       with:
-        repository: dzfreelancedevelopper/database
+        repository: dzfreelancedevelopper/example_spatie_query_builder/database
         token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
         submodules: true
     - name: Pull & update submodules recursively
