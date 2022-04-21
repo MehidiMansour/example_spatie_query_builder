@@ -17,8 +17,9 @@ jobs:
         php-version: '8.0'
     - uses: actions/checkout@v2
       with:
-        repository: database
+        repository: dzfreelancedevelopper/database
         token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
+        submodules: true
     - name: Pull & update submodules recursively
       run: |
         git submodule update --init --recursive
