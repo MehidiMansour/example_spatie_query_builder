@@ -16,16 +16,20 @@ jobs:
       with:
         php-version: '8.0'
     - uses: actions/checkout@v2
+    with:
+        repository: https://github.com/dzfreelancedevelopper/example_spatie_query_builder
+        token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
+
     - name: Pull & update submodules recursively
       run: |
         git submodule update --init --recursive
         git submodule update --recursive --remote
-
-    - name: Commit & push changes
+    - name: Commit
       run: |
-        git config --global user.name ${{ secrets.USER_NAME }}
-        git config --global user.email ${{ secrets.USER_EMAIL }}
-        git commit -am "Update submodules"
+        git config user.email "actions@github.com"
+        git config user.name "GitHub Actions - update submodules"
+        git add --all
+        git commit -m "Update submodules" || echo "No changes to commit"
         git push
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
