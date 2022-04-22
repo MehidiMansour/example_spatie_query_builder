@@ -19,6 +19,7 @@ jobs:
       with:
         repository: dzfreelancedevelopper/database
         token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
+        
     - name: submodules recursively
       run: git submodule update --init --recursive
     - name: Copy .env
