@@ -22,6 +22,10 @@ jobs:
 
     - name: submodules recursively
       run: git submodule update --init --recursive
+    - uses: actions/checkout@v3
+      with:
+        repository: dzfreelancedevelopper/example_spatie_query_builder
+        token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
